@@ -1,8 +1,11 @@
 {
-  "name": "code",
+  "name": "phoenix-code-challenge",
   "version": "0.1.0",
-  "private": true,
+  "author": "Greg Lane",
+  "license": "ISC",
+  "private": false,
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -10,14 +13,35 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "pouchdb": "^7.2.1",
+    "pouchdb-browser": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
+    "react-table": "^7.3.0",
+    "typescript": "^3.9.7",
+    "use-pouchdb": "^1.2.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "autoprefixer": "^9.8.5",
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^7.1.1",
+    "postcss-import": "^12.0.1",
+    "react-app-rewired": "^2.1.6",
+    "serve": "^11.3.2",
+    "tailwindcss": "^1.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "process-css:wait": "postcss src/tailwind.css -o src/index.css -w --verbose",
+    "process-css:mini": "NODE_ENV=production postcss src/tailwind.css -o src/index.css --verbose",
+    "build": "npm run process-css:mini && react-app-rewired build",
+    "start:prod": "npm run build && serve -s build -l 3000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,5 +59,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "pouchConfig": {
+    "remoteEndpoint": "http://127.0.0.1:5984",
+    "writeEmployeeDB": "write-employee",
+    "readEmployeeDB": "read-employee"
   }
 }
