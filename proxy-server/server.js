@@ -12,35 +12,36 @@ const WRITE_EMPLOYEE_DB_URL = 'http://127.0.0.1:5984/write-employee'
 const writeEmployeeDB = new PouchDB(WRITE_EMPLOYEE_DB_URL)
 
 // Process any records already in the pouch queue on server startup.
-writeEmployeeDB.info().then(info => {
-  console.log('`write-employee` PouchDB Info: \n', info)
+writeEmployeeDB
+  .info()
+  .then(info => {
+    console.log(`\n✨PouchDB [write-employee] Info: ✨\n`, info)
 
-  if (info.doc_count) {
-    writeEmployeeDB
-      .allDocs({
-        include_docs: true
-      })
-      .then(({ rows: recs }) => {
-        console.log(recs)
-        if (recs) {
-          recs
-            .filter(
-              rec =>
-                !(
-                  rec.doc.created &&
-                  rec.doc.created.attempts >= MAX_ATTEMPTS_TO_CREATE_EMPLOYEE
-                )
-            )
-            .forEach(rec => {
-              postToApiThenRemoveFromQueue(rec)
-            })
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-})
+    if (info.doc_count) {
+      writeEmployeeDB
+        .allDocs({
+          include_docs: true
+        })
+        .then(({ rows: recs }) => {
+          console.log(recs)
+          if (recs) {
+            recs
+              .filter(
+                rec =>
+                  !(
+                    rec.doc.created &&
+                    rec.doc.created.attempts >= MAX_ATTEMPTS_TO_CREATE_EMPLOYEE
+                  )
+              )
+              .forEach(rec => {
+                postToApiThenRemoveFromQueue(rec)
+              })
+          }
+        })
+        .catch(error => console.log(error))
+    }
+  })
+  .catch(error => console.log(`🐵 PouchDB connection refused.\n ${error}`))
 
 // Subscribe to pouch change event so we can listen and process pouch queue.
 writeEmployeeDB
@@ -54,11 +55,11 @@ writeEmployeeDB
       postToApiThenRemoveFromQueue(change)
     }
 
-    console.log('change record fired: \n', change)
+    console.log('✨ Change record fired: \n', change)
   })
 
 const postToApiThenRemoveFromQueue = queuedItem => {
-  console.log('postToApiThenRemoveFromQueue()\n', queuedItem)
+  console.log('Attempting postToApiThenRemoveFromQueue()\n', queuedItem)
   const doc = queuedItem.doc
   const employee = {
     firstName: doc.firstName,
@@ -72,7 +73,7 @@ const postToApiThenRemoveFromQueue = queuedItem => {
   if (!error) {
     LeviathonAPI.createEmployee(value).then(data => {
       if (data.status === 200) {
-        console.log('Create employee successful\n', queuedItem)
+        console.log('✨ Create employee successful\n', queuedItem)
         writeEmployeeDB.remove(queuedItem.doc)
       } else {
         data.promise.then(txt => {
@@ -101,14 +102,14 @@ const postToApiThenRemoveFromQueue = queuedItem => {
           // }
 
           console.log(
-            'Leviathan API createEmployee() failed!\n',
+            '🐵 Leviathan API createEmployee() failed!\n',
             `Response > status:'${data.status}', reason:'${txt}'`
           )
         })
       }
     })
   } else {
-    console.log(`[${error}]\n`, employee)
+    console.log(`🐵 Validation error - [${error}]\n`, employee)
   }
 }
 //#endregion

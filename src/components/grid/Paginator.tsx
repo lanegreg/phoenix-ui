@@ -4,6 +4,7 @@ import { number, bool, func } from 'prop-types'
 //#endregion
 
 const Paginator = ({
+  pageIndex,
   canPreviousPage,
   canNextPage,
   pageCount,
@@ -32,9 +33,9 @@ const Paginator = ({
           </button>
           <button
             disabled
-            className="py-2 px-3 focus:outline-none text-white font-semibold border border-r-0 border-l-0 border-neon_blue bg-neon_blue cursor-default"
+            className="py-2 px-3 focus:outline-none text-white text-sm font-semibold border border-r-0 border-l-0 border-neon_blue bg-neon_blue cursor-default"
           >
-            1
+            {pageIndex + 1}
           </button>
           <button
             onClick={() => nextPage()}
@@ -59,6 +60,7 @@ const Paginator = ({
 
 //#region [Prop Types]
 Paginator.propTypes = {
+  pageIndex: number.isRequired,
   canPreviousPage: bool.isRequired,
   canNextPage: bool.isRequired,
   pageCount: number.isRequired,

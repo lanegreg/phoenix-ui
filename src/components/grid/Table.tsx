@@ -90,6 +90,7 @@ const Table = ({ data, columns, getPageOfData, numOfPages }) => {
         </tbody>
       </table>
       <Paginator
+        pageIndex={pageIndex}
         canPreviousPage={canPreviousPage}
         canNextPage={canNextPage}
         pageCount={pageCount}

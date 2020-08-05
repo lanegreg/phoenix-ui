@@ -10,8 +10,6 @@ import { createEmployee, useEmployeesData } from '../../api-services'
 
 const EmployeeGrid = () => {
   //#region [Hooks]
-  // const [pageIndex, setpageIndex] = useState(1)
-  // const [pageSize, setPageSize] = useState(10)
   const [numOfPages, setNumOfPages] = useState(1)
   const [pageOfData, setPageOfData] = useState([])
   const employeesData = useEmployeesData()
@@ -137,7 +135,7 @@ const EmployeeGrid = () => {
           </div>
           <div className="flex items-center">
             <button
-              className="bg-neon_blue hover:bg-light_slate_blue focus:outline-none text-sm text-white rounded-sm px-4 py-1 mb-4 mr-6 transition-colors duration-200 ease-in-out"
+              className="bg-neon_blue hover:bg-light_slate_blue focus:outline-none text-sm text-white rounded-sm px-4 py-2 mb-4 mr-6 transition-colors duration-200 ease-in-out"
               onClick={handleDialogOpen}
             >
               <FontAwesomeIcon icon={faPlus} className="mr-2" />

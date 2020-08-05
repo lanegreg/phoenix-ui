@@ -1,44 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## GrowFlow - Phoenix Code Challenge
 
-## Available Scripts
+This application was started by using the [Create React App](https://github.com/facebook/create-react-app) CLI.
 
-In the project directory, you can run:
+> ### Points of Interest
 
-### `yarn start`
+- It is designed to work offline.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- It uses a custom Service Worker to cache the application shell, assets and API calls after initial installation.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- It uses PouchDB to queue any new employees offline, and then sync them when back online.
 
-### `yarn test`
+- It uses a proxy API server to get around the issue of CORS not being enabled on the Leviathan API.
+  <br /><br />
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> ### Steps for Setting Up
 
-### `yarn build`
+1. Install Node v14.4.0 using [nvm](https://github.com/nvm-sh/nvm) (_node version manager_).<br />
+   `$ nvm install v14.4.0`<br />
+   `$ nvm use`
+   <br /><br />
+2. Clone the [Phoenix repository](https://github.com/lanegreg/phoenix-ui) and install dependencies.<br />
+   `$ git clone https://github.com/lanegreg/phoenix-ui.git`<br />
+   `$ npm install`
+   <br /><br />
+3. Switch into the `/proxy-server` folder and install dependencies.<br />
+   `$ cd proxy-server/ && npm install`
+   <br /><br />
+4. Install [PouchDB Server](https://github.com/pouchdb/pouchdb-server) globally.<br />
+   `$ npm install -g pouchdb-server`
+   <br /><br />
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> ### Steps for Running
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. In a terminal, start the PouchDB server inside the `/proxy-server` folder.<br />
+   **Note:** _PouchDB will setup it's folder stucture based on the folder you start in._<br />
+   `$ cd proxy-server/ && npm run start:pouch`<br />
+   ...or with **_yarn_**<br />
+   `$ cd proxy-server/ && yarn start:pouch`
+   <br /><br />
+2. In a second terminal, from the same `/proxy-server` folder, start up the proxy server.<br />
+   `$ cd proxy-server/ && npm run start`<br />
+   ...or with **_yarn_**<br />
+   `$ cd proxy-server/ && yarn start`
+   <br /><br />
+3. In a third terminal, start up the Phoenix application.<br />
+   `$ npm run start:prod`<br />
+   ...or with **_yarn_**<br />
+   `$ yarn start:prod`
+   <br /><br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> Example of Offline Usage:
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Offline Example:](readme-assets/offline-example.gif)
