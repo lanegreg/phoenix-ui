@@ -51,6 +51,15 @@ This application was started by using the [Create React App](https://github.com/
    `$ yarn start:prod`
    <br /><br />
 
-> Example of Offline Usage:
+> Example of Offline Usage
 
 ![Offline Example:](readme-assets/offline-example.gif)
+<br /><br />
+
+> Problems with Leviathan API
+
+- Inconsistent API design between the different entities (e.g. Employee, Customer, Order).
+- Inconsistent naming convention used for property names on entity objects.
+- Misspelled property names on entity objects.
+- Using the `User` & `Key` in the URL is _not_ a good practice for [security reasons](https://security.stackexchange.com/questions/118975/is-it-safe-to-include-an-api-key-in-a-requests-url).
+- The API is not **`CORS`** enabled which creates a problem if you are to access the API from the browser.

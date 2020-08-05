@@ -1,4 +1,6 @@
 export { EmployeeGrid } from './EmployeeGrid'
+export { CustomerGrid } from './CustomerGrid'
+export { OrderGrid } from './OrderGrid'
 export { Table } from './Table'
 export { EmployeeAddDialog } from './EmployeeAddDialog'
 export { Paginator } from './Paginator'

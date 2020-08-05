@@ -1,6 +1,6 @@
 //#region [Imports]
 import React, { useMemo, useState, useCallback } from 'react'
-import { EmployeeAddDialog, Table } from '../grid'
+import { EmployeeAddDialog, Table } from '../grids'
 import { useEscape } from '../../utils/custom-hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPrint } from '@fortawesome/free-solid-svg-icons'
@@ -32,7 +32,7 @@ const EmployeeGrid = () => {
   //#region [Handlers]
   const curryHandleViewClick = id => {
     return event => {
-      console.log(id)
+      console.log(`View for EmployeeID:[${id}] was clicked.`)
       event.preventDefault()
     }
   }
@@ -99,12 +99,12 @@ const EmployeeGrid = () => {
       {
         Header: 'Action',
         accessor: 'id',
-        Cell: ({ row }) => (
+        Cell: ({ row, cell }) => (
           <a
             id={row.id}
             href="#nonav"
             className="text-neon_blue hover:underline"
-            onClick={curryHandleViewClick(row.id)}
+            onClick={curryHandleViewClick(cell.value)}
           >
             View
           </a>

@@ -1,7 +1,7 @@
 //#region [Imports]
 import React, { useEffect } from 'react'
 import { number, func, array } from 'prop-types'
-import { Paginator } from '../grid'
+import { Paginator } from '../grids'
 import { useTable, usePagination } from 'react-table'
 //#endregion
 

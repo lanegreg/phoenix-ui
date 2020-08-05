@@ -109,7 +109,7 @@ const postToApiThenRemoveFromQueue = queuedItem => {
       }
     })
   } else {
-    console.log(`🐵 Validation error - [${error}]\n`, employee)
+    console.log(`😱 Validation error - [${error}]\n`, employee)
   }
 }
 //#endregion
@@ -130,6 +130,18 @@ app.use((req, res, next) => {
 //#region [navy] GET - [Read Request Route Handlers]
 app.get('/api/employees', (req, res) => {
   LeviathonAPI.getAllEmployees().then(({ status, promise }) => {
+    if (status === 200) {
+      promise.then(data => {
+        res.status(200).send(data)
+      })
+    } else {
+      res.status(status).send(`Oops!😞 ...status returned is ${status}`)
+    }
+  })
+})
+
+app.get('/api/customers', (req, res) => {
+  LeviathonAPI.getAllCustomers().then(({ status, promise }) => {
     if (status === 200) {
       promise.then(data => {
         res.status(200).send(data)

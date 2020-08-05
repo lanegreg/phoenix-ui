@@ -35,8 +35,17 @@ precacheAndRoute(
 registerRoute(
   ({ url }) =>
     url.pathname.startsWith('/api/employees') ||
-    url.pathname.startsWith('/employee'),
+    url.pathname.startsWith('/employees'),
   new StaleWhileRevalidate({
     cacheName: 'employee-cache'
+  })
+)
+
+registerRoute(
+  ({ url }) =>
+    url.pathname.startsWith('/api/customers') ||
+    url.pathname.startsWith('/customers'),
+  new StaleWhileRevalidate({
+    cacheName: 'customer-cache'
   })
 )

@@ -4,12 +4,7 @@ import { useAllDocs } from 'use-pouchdb'
 import { employeeSchema } from './validation-schemas'
 import { pouchConfig } from '../../package.json'
 import uuid from '../utils/uuid'
-import {
-  API_USER,
-  API_KEY,
-  ENDPOINT,
-  JSON_CONTENT_TYPE
-} from './service-config'
+import { ENDPOINT, JSON_CONTENT_TYPE } from './service-config'
 
 // const url = `${ENDPOINT}/employee/?ApiUser=${API_USER}&ApiKey=${API_KEY}`
 const url = `${ENDPOINT}/employees`

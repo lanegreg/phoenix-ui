@@ -2,7 +2,10 @@
 import React from 'react'
 import { bool, func } from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
+import {
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
+} from '@fortawesome/free-regular-svg-icons'
 //#endregion
 
 const Header = ({ handleSidebarOpen, handleSidebarClose, sidebarOpen }) => {
@@ -11,12 +14,13 @@ const Header = ({ handleSidebarOpen, handleSidebarClose, sidebarOpen }) => {
     <header className="flex justify-between items-center py-4 px-6 bg-white">
       <div className="flex items-center">
         <button
-          className={`text-gray-500 focus:outline-none transform duration-100 hover:scale-125 hover:text-neon_blue ${
-            sidebarOpen ? 'rotate-0' : 'rotate-180'
-          }`}
+          className="text-gray-500 focus:outline-none scale-105 transform duration-100 hover:scale-110 hover:text-neon_blue"
           onClick={sidebarOpen ? handleSidebarClose : handleSidebarOpen}
         >
-          <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+          <FontAwesomeIcon
+            icon={sidebarOpen ? faArrowAltCircleLeft : faArrowAltCircleRight}
+            className="w-10"
+          />
         </button>
       </div>
 

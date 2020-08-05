@@ -1,6 +1,8 @@
 //#region [Imports]
 import React from 'react'
 import { bool, func } from 'prop-types'
+import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -13,6 +15,16 @@ import {
 //#endregion
 
 const Sidebar = ({ handleClose, sidebarOpen }) => {
+  //#region [Hooks]
+  let { pathname } = useLocation()
+  //#endregion
+
+  //#region [Constants]
+  const UNSELECTED =
+    'border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100'
+  const SELECTED = 'bg-neon_blue text-gray-100 border-gray-100'
+  //#endregion
+
   //#region [JSX]
   return (
     <>
@@ -36,29 +48,35 @@ const Sidebar = ({ handleClose, sidebarOpen }) => {
           <span className="italic text-neon_blue">flow</span>
         </div>
         <nav className="mt-10">
-          <a
-            className="flex items-center mt-4 py-2 px-6 border-l-4 bg-neon_blue text-gray-100 border-gray-100"
-            href="/"
+          <Link
+            to="/employees"
+            className={`flex items-center mt-4 py-2 px-6 border-l-4 ${
+              pathname === '/employees' ? SELECTED : UNSELECTED
+            }`}
           >
             <FontAwesomeIcon icon={faIdBadge} />
             <span className="mx-5">Employees</span>
-          </a>
+          </Link>
 
-          <a
-            className="flex items-center mt-4 py-2 px-6 border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100"
-            href="/"
+          <Link
+            to="/customers"
+            className={`flex items-center mt-4 py-2 px-6 border-l-4 ${
+              pathname === '/customers' ? SELECTED : UNSELECTED
+            }`}
           >
             <FontAwesomeIcon icon={faSmile} />
             <span className="mx-4">Customers</span>
-          </a>
+          </Link>
 
-          <a
-            className="flex items-center mt-4 py-2 px-6 border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100"
-            href="/"
+          <Link
+            to="/orders"
+            className={`flex items-center mt-4 py-2 px-6 border-l-4 ${
+              pathname === '/orders' ? SELECTED : UNSELECTED
+            }`}
           >
             <FontAwesomeIcon icon={faFileAlt} />
             <span className="mx-5">Orders</span>
-          </a>
+          </Link>
 
           <a
             className="flex items-center mt-4 py-2 px-6 border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100"
