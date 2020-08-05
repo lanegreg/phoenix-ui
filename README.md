@@ -21,13 +21,15 @@ This application was started by using the [Create React App](https://github.com/
    <br /><br />
 2. Clone the [Phoenix repository](https://github.com/lanegreg/phoenix-ui) and install dependencies.<br />
    `$ git clone https://github.com/lanegreg/phoenix-ui.git`<br />
-   `$ npm install`
+   `$ cd phoenix-ui/ && npm install`
    <br /><br />
-3. Switch into the `/proxy-server` folder and install dependencies.<br />
+3. Change into the `/proxy-server` folder and install dependencies.<br />
    `$ cd proxy-server/ && npm install`
    <br /><br />
 4. Install [PouchDB Server](https://github.com/pouchdb/pouchdb-server) globally.<br />
-   `$ npm install -g pouchdb-server`
+   `$ npm install -g pouchdb-server`<br />
+   ...underneath the `/proxy-server` folder create a `/pouch-db` folder<br />
+   `$ mkdir pouch-db`
    <br /><br />
 
 > ### Steps for Running

@@ -11,8 +11,8 @@ const Header = ({ handleSidebarOpen, handleSidebarClose, sidebarOpen }) => {
     <header className="flex justify-between items-center py-4 px-6 bg-white">
       <div className="flex items-center">
         <button
-          className={`text-gray-500 focus:outline-none ${
-            sidebarOpen ? '' : 'transform rotate-180'
+          className={`text-gray-500 focus:outline-none transform duration-100 hover:scale-125 hover:text-neon_blue ${
+            sidebarOpen ? 'rotate-0' : 'rotate-180'
           }`}
           onClick={sidebarOpen ? handleSidebarClose : handleSidebarOpen}
         >
